@@ -1,0 +1,39 @@
+# CloudFormation template for setting up API Gateway to expose a Spring Boot application
+
+AWSTemplateFormatVersion: '2010-09-09'
+
+Resources:
+  # Define API Gateway
+  WebfluxApi:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: WebfluxApi
+      Description: API Gateway for CodeChallenge Application
+
+  # Define API Gateway resource for the application
+  WebfluxApiResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId: !GetAtt WebfluxApi.RootResourceId
+      RestApiId: !Ref WebfluxApi
+      PathPart: github-codechallenge
+
+  # Define API Gateway method for the application resource
+  WebfluxApiMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      HttpMethod: GET
+      ResourceId: !Ref WebfluxApiResource
+      RestApiId: !Ref WebfluxApi
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri: !Sub
+          - "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${lambdaArn}/invocations"
+          - lambdaArn: your-lambda-function-arn # Replace with your Lambda function ARN
+
+Outputs:
+  # Output the invoke URL of the API Gateway
+  ApiGatewayInvokeURL:
+    Value: !Sub "https://${WebfluxApi}.execute-api.${AWS::Region}.amazonaws.com/prod/github-codechallenge"

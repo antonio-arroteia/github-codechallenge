@@ -1,0 +1,39 @@
+# CloudFormation template for deploying a Spring Boot application as a Fargate service
+
+AWSTemplateFormatVersion: '2010-09-09'
+
+Resources:
+  # Define ECS task definition for the Spring Boot application
+  WebfluxTaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      Family: webflux-task
+      Cpu: 256
+      Memory: 512
+      NetworkMode: awsvpc
+      ContainerDefinitions:
+        - Name: github-codechallenge-container
+          Image: your-image-url:latest # Replace 'your-image-url' with your Docker image URL
+          PortMappings:
+            - ContainerPort: 8080
+      ExecutionRoleArn: arn:aws:iam::123456789012:role/ecsTaskExecutionRole # Replace with your ECS task execution role ARN
+
+  # Define ECS service for running the Fargate task
+  WebfluxFargateService:
+    Type: AWS::ECS::Service
+    Properties:
+      Cluster: github-codechallenge-cluster # Replace with your ECS cluster name
+      ServiceName: github-codechallenge-service
+      TaskDefinition: !Ref WebfluxTaskDefinition
+      DesiredCount: 1
+      LaunchType: FARGATE
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          Subnets:
+            - subnet-1234567890abcdef0 # Replace with your subnet ID
+          SecurityGroups:
+            - sg-1234567890abcdef0 # Replace with your security group ID
+      LoadBalancers:
+        - ContainerName: github-codechallenge-container
+          ContainerPort: 8080
+          TargetGroupArn: your-target-group-arn # Replace with your target group ARN

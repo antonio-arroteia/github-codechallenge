@@ -1,0 +1,25 @@
+#spring.application.name=CodeChallenge
+#springdoc.swagger-ui.enabled=
+server:
+  servlet.context-path: /github-codechallenge
+  http2.enabled: true
+spring:
+  application:
+    name: CodeChallenge
+  webflux:
+    base-path: /github-codechallenge
+
+springdoc: #openapi
+  swagger-ui:
+    path: /openapi/swagger-ui.html
+  api-docs:
+    groups:
+      enabled: true
+    path: /openapi/v3/api-docs
+
+logging:
+  level:
+    root: debug
+springfox:
+  documentation:
+    enabled: true
