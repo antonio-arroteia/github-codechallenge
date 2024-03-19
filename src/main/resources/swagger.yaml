@@ -4,8 +4,10 @@ info:
   version: 1.0.0
 tags:
   - name: Controller for fetching results from the Github API
+servers:
+  - url: http://localhost:8080
 paths:
-  /repositories:
+  /github-codechallenge/api/github/repositories:
     post:
       tags:
         - Controller for fetching results from the Github API

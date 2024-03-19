@@ -17,8 +17,8 @@ branch information in a single endpoint.
 
 ## Pre Requisites
 
-Java 21
-Docker 20.10.14 (Optional)
+- Java 21
+- Docker 20.10.14 (Optional)
 
 
 ## Getting Started
@@ -67,9 +67,8 @@ This was my first time playing with a webflux (or any reactive framework for tha
 However, I'm facing a few difficulties for which I searched a lot, but I was still not able to fix them:
 - I'm not able to read the request body as the response object unless it is wrapped in a Mono, not sure why. So because starting from a Mono made me face even more
   problems when using the values inside the request body and returning a Flux, my working solution only accepts the json header as it should but the value inside 
-  the request body is not a json but a string;
-- I suspect that due to this condition I'm also unable to call the API from swagger, so I've been using Postman;
-- Although it was not a direct requirement, I also faced problems configuring the swagger ui and the api-docs, so it was in sync with the API solution.
-I never had this issue before with Spring MVC, so I'm betting it misses some specific webflux configuration, although I already tried the swagger dedicated libs for swagger.
+  the request body is not a json but a string
 - Had to adapt the integration test for validating the wrong header error. The error response is returned as it should during run time, but on the integration test,
-the right exception is thrown but not in the format 
+  the right exception is thrown but not in the format
+- Although it was not a direct requirement, I also faced problems configuring the swagger ui and the api-docs, so it was in sync with the API solution.
+  I never had this issue before with Spring MVC, so I'm betting it misses some specific webflux configuration, although I already tried the swagger dedicated libs for swagger
