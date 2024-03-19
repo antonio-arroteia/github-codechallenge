@@ -14,7 +14,7 @@ class GithubService(private val githubClient: GithubClient) {
     fun getUserRepositories(username: String): Flux<GithubRepoResponse> {
         return githubClient.getUserRepositories(username).filter { !it.fork }
             .flatMap { repo ->
-                fetchRepoBranches(username, repo.name)
+                getRepositoryBranches(username, repo.name)
                     .collectList()
                     .map { branches ->
                         mapToGithubRepoResponse(repo, branches)
@@ -22,7 +22,7 @@ class GithubService(private val githubClient: GithubClient) {
             }
     }
 
-    private fun fetchRepoBranches(username: String, repositoryName: String): Flux<GithubBranch> {
+    private fun getRepositoryBranches(username: String, repositoryName: String): Flux<GithubBranch> {
         return githubClient.getUserBranches(username, repositoryName)
     }
 

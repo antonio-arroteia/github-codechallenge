@@ -1,14 +1,15 @@
 package com.tui.codechallenge.config
 
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.http.HttpHeaders
 import org.springframework.web.reactive.function.client.WebClient
 
 @Configuration
-class WebClientConfig {
-
-    private val githubUserToken = "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"
+class WebClientConfig(
+    @Value("\${git.hub.access-token}")
+    private val githubUserToken: String
+) {
     @Bean
     fun webClient(): WebClient {
         return WebClient.builder()

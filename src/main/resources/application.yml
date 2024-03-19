@@ -3,23 +3,18 @@
 server:
   servlet.context-path: /github-codechallenge
   http2.enabled: true
+  port: 8080
 spring:
   application:
-    name: CodeChallenge
-  webflux:
-    base-path: /github-codechallenge
+    name: github-codechallenge
 
-springdoc: #openapi
-  swagger-ui:
-    path: /openapi/swagger-ui.html
+git.hub.access-token: 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
+
+
+springdoc:
   api-docs:
     groups:
       enabled: true
-    path: /openapi/v3/api-docs
-
-logging:
-  level:
-    root: debug
-springfox:
-  documentation:
-    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
