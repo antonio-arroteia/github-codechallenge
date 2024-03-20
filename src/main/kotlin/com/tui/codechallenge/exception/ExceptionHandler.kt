@@ -12,12 +12,14 @@ class ExceptionHandler : ResponseEntityExceptionHandler() {
     @org.springframework.web.bind.annotation.ExceptionHandler(WebClientResponseException.NotFound::class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     fun handleNotFoundException(ex: WebClientResponseException.NotFound): ResponseEntity<ErrorResponse> {
+        logger.error("No user found")
         return ResponseEntity.status(ex.statusCode).body(ErrorResponse(ex.statusText, ex.message))
     }
 
     @org.springframework.web.bind.annotation.ExceptionHandler(WebClientResponseException.NotAcceptable::class)
     @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
     fun handleNotAcceptableException(ex: WebClientResponseException.NotAcceptable): ResponseEntity<ErrorResponse> {
+        logger.error("Request had an incorrect header, must be \"application/json\"")
         return ResponseEntity.status(ex.statusCode).body(ErrorResponse("Not Acceptable", ex.statusText))
     }
 

@@ -14,7 +14,7 @@ class WebClientConfig(
     fun webClient(): WebClient {
         return WebClient.builder()
             .baseUrl("https://api.github.com")
-            .defaultHeader("Authorization", "Bearer $githubUserToken")
+            .defaultHeader("Authorization", "Bearer $githubUserToken") //needed for when the access to the repo is private
             .build()
     }
 }

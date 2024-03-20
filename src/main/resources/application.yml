@@ -4,11 +4,13 @@ server:
   servlet.context-path: /github-codechallenge
   http2.enabled: true
   port: 8080
+  error:
+    include-message: always
 spring:
   application:
     name: github-codechallenge
 
-git.hub.access-token: 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
+git.hub.access-token: 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
 
 
 springdoc:

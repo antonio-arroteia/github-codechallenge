@@ -1,13 +1,12 @@
 openapi: 3.0.0
 info:
-  title: GitHub API
+  title: Github API
+  description: API for fetching results from the Github API
   version: 1.0.0
-tags:
-  - name: Controller for fetching results from the Github API
 servers:
-  - url: http://localhost:8080
+  - url: "http://localhost:8080/github-codechallenge/api/github"
 paths:
-  /github-codechallenge/api/github/repositories:
+  /repositories:
     post:
       tags:
         - Controller for fetching results from the Github API

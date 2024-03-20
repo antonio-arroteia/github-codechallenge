@@ -42,7 +42,6 @@ class GithubController(private val githubService: GithubService) {
     ):Flux<GithubRepoResponse> {
         logger.info("Request to get repositories on user: $username")
         if(acceptHeader != null && acceptHeader != URL_HEADER_ACCEPT_VALUE ){
-            logger.error("Request had an incorrect header: $acceptHeader")
             throw NotAcceptable.create(406,"Only application/json is supported", HttpHeaders.EMPTY, byteArrayOf(), null)
         }
         return githubService.getUserRepositories(username)
