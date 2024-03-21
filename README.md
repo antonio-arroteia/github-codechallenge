@@ -39,6 +39,7 @@ In case there's no user with such given name or the request is made with the wro
 Endpoint:
 http://localhost:8080/github-codechallenge/api/github/repositories
 
+This API doesn't have GitHub authorization implemented so please beware you can only make 60 requests/hour.
 
 ## Testing
 
@@ -51,11 +52,11 @@ You can also use an API Manager like Postman, following the swagger documentatio
   - Header: Accept application/json
 
 
-The project's unit and integration tests run during the application build, but you can run it at any time by using the command "./gradlew test" from the root 
+The project's unit and integration tests run during the application build, but you can run it at any time by using the command "./gradlew test" from the root.
 
 ## API Documentation
 
-The API is specified in the swagger.yaml file at root level
+The API is specified in the swagger.yaml file at root level.
 
 
 ## Blockers

@@ -1,5 +1,3 @@
-#spring.application.name=CodeChallenge
-#springdoc.swagger-ui.enabled=
 server:
   servlet.context-path: /github-codechallenge
   http2.enabled: true
@@ -10,7 +8,7 @@ spring:
   application:
     name: github-codechallenge
 
-git.hub.access-token: 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
+#git.hub.access-token:
 
 
 springdoc:

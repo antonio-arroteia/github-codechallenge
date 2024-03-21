@@ -1,6 +1,5 @@
 package com.tui.codechallenge.controller
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.ninjasquad.springmockk.MockkBean
 import com.tui.codechallenge.client.GithubClient
 import com.tui.codechallenge.controller.RestApiElements.URL_API_BASE
